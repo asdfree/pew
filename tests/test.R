@@ -36,6 +36,8 @@ pew_design <-
 	update( 
 		pew_design , 
 		
+		one = 1 ,
+		
 		your_day_today =
 			factor( 
 				q1 , 
