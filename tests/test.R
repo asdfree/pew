@@ -54,6 +54,8 @@ pew_design <-
 		
 		age_in_years = ifelse( q146 %in% 98:99 , NA , q146 ) ,
 
+		climate_change_concern = ifelse( q13a %in% 1:5 , as.numeric( q13a < 3 ) , NA ) ,
+		
 		country_economic_situation =
 			factor(
 				q3 ,
@@ -103,7 +105,7 @@ svyratio(
 	pew_design ,
 	na.rm = TRUE
 )
-sub_pew_design <- subset( pew_design , q13a %in% 1:2 )
+sub_pew_design <- subset( pew_design , q146 >= 65 )
 svymean( ~ school_years , sub_pew_design , na.rm = TRUE )
 this_result <- svymean( ~ school_years , pew_design , na.rm = TRUE )
 
@@ -132,16 +134,16 @@ svymean( ~ school_years , pew_design , na.rm = TRUE , deff = TRUE )
 
 # SRS with replacement
 svymean( ~ school_years , pew_design , na.rm = TRUE , deff = "replace" )
-svyciprop( ~ children_better_off , pew_design ,
+svyciprop( ~ climate_change_concern , pew_design ,
 	method = "likelihood" , na.rm = TRUE )
-svyttest( school_years ~ children_better_off , pew_design )
+svyttest( school_years ~ climate_change_concern , pew_design )
 svychisq( 
-	~ children_better_off + country_economic_situation , 
+	~ climate_change_concern + country_economic_situation , 
 	pew_design 
 )
 glm_result <- 
 	svyglm( 
-		school_years ~ children_better_off + country_economic_situation , 
+		school_years ~ climate_change_concern + country_economic_situation , 
 		pew_design 
 	)
 
