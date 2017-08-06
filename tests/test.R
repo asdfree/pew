@@ -6,8 +6,8 @@ pew_cat <-
 	get_catalog( "pew" ,
 		output_dir = file.path( getwd() ) )
 
-# 2015 only
-pew_cat <- subset( pew_cat , year == 2015 )
+# spring 2015 only
+pew_cat <- subset( pew_cat , name == "Spring 2015 Survey Data" )
 # download the microdata to your local computer
 stopifnot( nrow( pew_cat ) > 0 )
 
