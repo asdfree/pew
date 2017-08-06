@@ -9,7 +9,7 @@ pew_cat <-
 # sample 50% of the records
 which_records <- sample( seq( nrow( pew_cat ) ) , round( nrow( pew_cat ) * 0.50 ) )
 
-# always sample the united states wave == 6 file
+# always sample the spring 2015
 pew_cat <- unique( rbind( pew_cat[ which_records , ] , subset( pew_cat , name == "Spring 2015 Survey Data" ) ) )
 
 lodown( "pew" , pew_cat )
