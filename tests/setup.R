@@ -11,7 +11,7 @@ pew_cat <-
 # spring 2015 only
 pew_cat <- subset( pew_cat , name == "Spring 2015 Survey Data" )
 # download the microdata to your local computer
-lodown( "pew" , pew_cat )
+
 
 options( survey.lonely.psu = "adjust" )
 
